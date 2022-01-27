@@ -9,14 +9,8 @@ class GoodsService {
     private Goods[] goodsArr = new Goods[10];
     static int count; // 배열에 Goods가 저장된 개수를 체크
 
-    /**
-     * 초기 데이터 세팅하는 메소드 작성
-     * Stirng[][] data = new String[][]{
-     *     {"A01","새우깡","2500","봉지과자"},
-     *     {"A02","콘칩","2500","봉지과자"}
-     * }
-     */
-    public void init(String [][] data){
+    // 생성자
+    public GoodsService(String [][] data){
         for(int i=0;i<data.length;i++){
             goodsArr[i] = this.create(data[i]);
             GoodsService.count++;
@@ -24,11 +18,7 @@ class GoodsService {
     }
 
     private Goods create(String[] row){
-        Goods goods = new Goods();
-        goods.setCode(row[0]);
-        goods.setName(row[1]);
-        goods.setPrice(Integer.parseInt(row[2]));
-        goods.setExplain(row[3]);
+        Goods goods = new Goods(row[0],row[1],Integer.parseInt(row[2]),row[3]);
         return goods;
     }
 

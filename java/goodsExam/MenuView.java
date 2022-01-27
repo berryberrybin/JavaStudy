@@ -8,13 +8,15 @@ import java.util.Scanner;
 
 class MenuView {
     private Scanner sc = new Scanner(System.in);
-    private GoodsService service = new GoodsService();
+    private GoodsService service;
 
     /**
      * 메뉴를 출력해줄 메소드
      */
     public void printMenu(String[][] data) {
-        service.init(data);
+
+        service = new GoodsService(data);
+
         while (true) {
             System.out.println("------------------------------------------");
             System.out.println("1.등록  2.전체검색  3.상품코드검색  4.수정  9.종료");
@@ -63,11 +65,7 @@ class MenuView {
         System.out.print("상품설명 > ");
         String explain = sc.nextLine();
 
-        Goods goods = new Goods();
-        goods.setCode(code);
-        goods.setName(name);
-        goods.setPrice(price);
-        goods.setExplain(explain);
+        Goods goods = new Goods(code,name,price,explain); // 생성자를 통해서 데이터 초기화
 
         //위 4개의 정보를 가지고 service로 이동
         int result = service.insert(goods);
@@ -107,12 +105,9 @@ class MenuView {
         } else {
             System.out.print("수정할 상품가격 > ");
             int price = Integer.parseInt(sc.nextLine());
-            System.out.println("수정할 상품정보> ");
+            System.out.print("수정할 상품정보 > ");
             String explain = sc.nextLine();
-            Goods newGoods = new Goods();
-            newGoods.setCode(code);
-            newGoods.setPrice(price);
-            newGoods.setExplain(explain);
+            Goods newGoods = new Goods(code, price, explain);
 
             boolean result = service.update(newGoods);
             if(result){

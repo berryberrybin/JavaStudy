@@ -6,6 +6,18 @@ class Goods {
     private int price;
     private String explain;
 
+    Goods(){} //기본생성자
+    Goods(String code, int price, String explain){
+        this.code = code;
+        this.price = price;
+        this.explain = explain;
+    }
+    Goods(String code, String name, int price, String explain){ // 생성자 오버로딩
+        this(code, price, explain);
+        this.name=name;
+    }
+
+
     public void setCode(String code) {
         this.code = code;
     }
