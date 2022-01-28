@@ -24,17 +24,31 @@ public class EndView {
         }
         System.out.println();
         // 결과 출력
-
     }
 
     /**
      * 상품코드에 해당하는 정보 출력하는 메소드
      */
     public static void printSelectByCode(Goods goods) {
-        System.out.println("--------" + goods.getCode() + " 에 해당하는 정보-----");
+        System.out.println("------------- 해당 상품 정보 --------------");
+        System.out.println("상품코드 : " + goods.getCode());
         System.out.println("상품이름 : " + goods.getName());
-        System.out.println("상품가격: " + goods.getPrice());
-        System.out.println("상품설명: " + goods.getExplain());
+        System.out.println("상품가격 : " + goods.getPrice());
+        System.out.println("상품설명 : " + goods.getExplain());
         //정보 출력
+    }
+
+    public static void printGoodsOrderByPrice(int[] rankArr, Goods[] goodsArr) {
+        System.out.println("------- 상품가격 순 LIST ( 오름차순 ) ----------");
+        for (int rank = 0; rank < rankArr.length; rank++) {
+            for (int i = 0; i < rankArr.length; i++) {
+                if (rankArr[i] == rank) {
+                    System.out.print(goodsArr[i].getPrice() + "원, ");
+                    System.out.print(goodsArr[i].getCode() + ", ");
+                    System.out.print(goodsArr[i].getName() + "\n");
+                }
+            }
+        }
+        System.out.println();
     }
 }

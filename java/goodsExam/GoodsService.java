@@ -10,15 +10,15 @@ class GoodsService {
     static int count; // 배열에 Goods가 저장된 개수를 체크
 
     // 생성자
-    public GoodsService(String [][] data){
-        for(int i=0;i<data.length;i++){
+    public GoodsService(String[][] data) {
+        for (int i = 0; i < data.length; i++) {
             goodsArr[i] = this.create(data[i]);
             GoodsService.count++;
         }
     }
 
-    private Goods create(String[] row){
-        Goods goods = new Goods(row[0],row[1],Integer.parseInt(row[2]),row[3]);
+    private Goods create(String[] row) {
+        Goods goods = new Goods(row[0], row[1], Integer.parseInt(row[2]), row[3]);
         return goods;
     }
 
@@ -28,13 +28,12 @@ class GoodsService {
      * - return : int형 (0: 상품코드중복, 1: 등록성공, -1: 배열 길이 벗어나서 등록안됨)
      */
 
-    public int insert(Goods goods)
-    {
-        if(goodsArr.length==GoodsService.count){
+    public int insert(Goods goods) {
+        if (goodsArr.length == GoodsService.count) {
             return -1;
         }
         //중복 체크 : 인수로 전달된 상품코드가 이미 저장된 Goods 배열안에 존재하는지 체크
-        if(this.selectByCode(goods.getCode()) != null){
+        if (this.selectByCode(goods.getCode()) != null) {
             return 0;
         }
         //중복아니면 등록
@@ -57,12 +56,12 @@ class GoodsService {
      * 없으면 null 리턴
      */
     public Goods selectByCode(String code) {
-        for(int i=0;i<GoodsService.count;i++){
+        for (int i = 0; i < GoodsService.count; i++) {
             Goods goods = goodsArr[i];
             // 대소문자 상관없이 체크
             String upperCode = goods.getCode().toUpperCase();
             code = code.toUpperCase();
-            if(upperCode.equals(code)){
+            if (upperCode.equals(code)) {
                 return goods;
             }
             /*if(goodsArr[i].getCode().equals(code)){
@@ -73,15 +72,26 @@ class GoodsService {
         return null;
     }
 
+    public Goods selectByName(String name) {
+        for (int i = 0; i < GoodsService.count; i++) {
+            Goods goods = goodsArr[i];
+            if (goodsArr[i].getName().equals(name)) {
+                return goods;
+
+            }
+        }
+        return null;
+    }
+
     /**
      * 상품코드에 해당하는 상품가격, 설명 수정하기
      */
     public boolean update(Goods goods) {
-        if(goods==null){
+        if (goods == null) {
             return false;
         }
         Goods findGoods = selectByCode(goods.getCode());
-        if(findGoods==null){
+        if (findGoods == null) {
             return false;
         }
         findGoods.setPrice(goods.getPrice());
@@ -89,4 +99,17 @@ class GoodsService {
         return true;
     }
 
+    public int[] getPriceRank() {
+        int[] rankArray = new int[count];
+        for (int i = 0; i < count; i++) {
+            int rankCount = 0;
+            for (int j = 0; j < count; j++) {
+                if (goodsArr[i].getPrice() < goodsArr[j].getPrice()) {
+                    rankCount++;
+                }
+            }
+            rankArray[i] = rankCount;
+        }
+        return rankArray;
+    }
 }

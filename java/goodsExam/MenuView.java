@@ -18,9 +18,9 @@ class MenuView {
         service = new GoodsService(data);
 
         while (true) {
-            System.out.println("------------------------------------------");
-            System.out.println("1.등록  2.전체검색  3.상품코드검색  4.수정  9.종료");
-            System.out.println("------------------------------------------");
+            System.out.println("----------------------------------------------------------------------");
+            System.out.println("1.등록  2.전체검색  3.상품코드검색  4.수정  5.상품가격순정보  6.상품이름검색  9.종료");
+            System.out.println("----------------------------------------------------------------------");
 
             System.out.print("메뉴 선택 > ");
             int menuChoice = Integer.parseInt(sc.nextLine());
@@ -38,6 +38,12 @@ class MenuView {
                     break;
                 case 4:
                     this.inputUpdate();
+                    break;
+                case 5:
+                    EndView.printGoodsOrderByPrice(service.getPriceRank(), service.selectAll());
+                    break;
+                case 6:
+                    inputSelectName();
                     break;
                 case 9:
                     System.out.println("프로그램 종료합니다.");
@@ -65,7 +71,7 @@ class MenuView {
         System.out.print("상품설명 > ");
         String explain = sc.nextLine();
 
-        Goods goods = new Goods(code,name,price,explain); // 생성자를 통해서 데이터 초기화
+        Goods goods = new Goods(code, name, price, explain); // 생성자를 통해서 데이터 초기화
 
         //위 4개의 정보를 가지고 service로 이동
         int result = service.insert(goods);
@@ -80,7 +86,7 @@ class MenuView {
     }
 
     /**
-     * 상품검색을 위한 키보드 입력
+     * 코드를 통해 상품검색을 위한 키보드 입력
      */
     public void inputSelect() {
         System.out.print("검색할 상품코드 > ");
@@ -88,6 +94,20 @@ class MenuView {
         Goods goods = service.selectByCode(code); // 호출
         if (goods == null) {
             EndView.printMessage(code + "는 없는 정보이므로 검색불가");
+        } else {
+            EndView.printSelectByCode(goods);
+        }
+    }
+
+    /**
+     * 이름을 통해 상품검색을 위한 키보드 입력
+     */
+    public void inputSelectName() {
+        System.out.print("검색할 상품이름 > ");
+        String name = sc.nextLine();
+        Goods goods = service.selectByName(name);
+        if (goods == null) {
+            EndView.printMessage(name + "는 없는 정보이므로 검색불가");
         } else {
             EndView.printSelectByCode(goods);
         }
@@ -110,9 +130,9 @@ class MenuView {
             Goods newGoods = new Goods(code, price, explain);
 
             boolean result = service.update(newGoods);
-            if(result){
-                EndView.printMessage(code+"에 해당하는 상품 정보가 수정되었습니다.");
-            } else{
+            if (result) {
+                EndView.printMessage(code + "에 해당하는 상품 정보가 수정되었습니다.");
+            } else {
                 EndView.printMessage("수정되지 않았습니다.");
             }
         }
