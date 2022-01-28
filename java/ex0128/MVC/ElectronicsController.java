@@ -9,7 +9,7 @@ View 와 Model 사이에서 중간 역할
  */
 public class ElectronicsController {
 
-    private ElectronicsService service ;
+    private ElectronicsService service = ElectronicsService.getInstance();
     // -service 0..1 의미 (private 형태, 변수명 service, ElectronicsService를 멤버 필드로 갖고 있음
 
     // ElectronicsController()
