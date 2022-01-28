@@ -20,14 +20,14 @@ public class ElectronicsController {
     /**
      * 전자제품 등록
      */
-    public void insert(Electronics electronics){
+    public void insert(Electronics electronics) {
 
     }
 
     /**
      * 전체검색
      */
-    public void selectAll(){
+    public void selectAll() {
 
     }
 
@@ -35,7 +35,7 @@ public class ElectronicsController {
     /**
      * 모델번호에 해당하는 전자제품 검색
      */
-    public void searchByModelNo(int modelNo){
+    public void searchByModelNo(int modelNo) {
 
     }
 
@@ -43,7 +43,7 @@ public class ElectronicsController {
     /**
      * 모델번호에 해당하는 전자제품 수정하기
      */
-    public void update(Electronics electronics){
+    public void update(Electronics electronics) {
 
     }
 
