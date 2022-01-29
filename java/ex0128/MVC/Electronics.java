@@ -52,4 +52,9 @@ public class Electronics {
     public String getModelDetail() {
         return modelDetail;
     }
+
+    //    @Override
+    public int compareTo(Electronics o) {
+        return Integer.compare(modelNo, o.modelNo);
+    }
 }

@@ -21,30 +21,39 @@ public class ElectronicsController {
      * 전자제품 등록
      */
     public void insert(Electronics electronics) {
-
+        if (service.searchByModelNo(electronics.getModelNo()) == null) { // 같은 제품코드 있는지 확인
+            if (service.insert(electronics)) {
+                EndView.printMessage(" >> 제품이 등록되었습니다.");
+            } else {
+                EndView.printMessage(" >> 배열 크기에 벗어나 제품등록에 실패하였습니다. ");
+            }
+        } else {
+            EndView.printMessage(" >> 중복된 제품코드로 등록에 실패하였습니다. ");
+        }
     }
 
     /**
      * 전체검색
      */
     public void selectAll() {
-
+        EndView.printAll(service.selectAll());
     }
-
 
     /**
      * 모델번호에 해당하는 전자제품 검색
      */
     public void searchByModelNo(int modelNo) {
-
+        EndView.printSearchByModelNo(service.searchByModelNo(modelNo));
     }
-
 
     /**
      * 모델번호에 해당하는 전자제품 수정하기
      */
     public void update(Electronics electronics) {
-
+        if (service.update(electronics)) {
+            EndView.printMessage(" >> 제품설명이 수정되었습니다.");
+        } else {
+            EndView.printMessage(" >> 제품설명 수정을 실패하였습니다. ");
+        }
     }
-
 }

@@ -23,10 +23,6 @@ public class ElectronicsService {
             //생성자 Electronics(int,String,int,String) 호출됨
             ElectronicsService.count++;
         }
-        System.out.println("--------- 초기 data 배열에 저장 되었는지 확인 체크 -------------");
-        for(int i=0;i<ElectronicsService.count;i++){
-            System.out.println(elecArr[i] +"|"+ elecArr[i].getModelNo()+"|"+elecArr[i].getModelName());
-        }
     }
 
     // 현재 객체를 리턴해줌 (싱글톤 생성 의도)
@@ -41,7 +37,11 @@ public class ElectronicsService {
      * @return : true 이면 등록성공, false이면 등록 실패
      */
     public boolean insert(Electronics electronics) {
-        return false;
+        if (count == elecArr.length) { // 배열 크기가 꽉 찼을때
+            return false;
+        }
+        elecArr[ElectronicsService.count++] = electronics; // electronics를 배열에 넣은 후, count++ 증가
+        return true;
     }
 
     /**
@@ -50,7 +50,7 @@ public class ElectronicsService {
      * @return
      */
     public Electronics[] selectAll() {
-        return null;
+        return elecArr;
     }
 
     /**
@@ -60,6 +60,11 @@ public class ElectronicsService {
      */
 
     public Electronics searchByModelNo(int modelNo) {
+        for (int i = 0; i < ElectronicsService.count; i++) {
+            if (elecArr[i].getModelNo() == modelNo) {
+                return elecArr[i];
+            }
+        }
         return null;
     }
 
@@ -71,6 +76,12 @@ public class ElectronicsService {
      * @return
      */
     public boolean update(Electronics electronics) {
-        return false;
+        Electronics foundElectronics = searchByModelNo(electronics.getModelNo());
+        if (foundElectronics == null) { // 제품코드가 없는지 확인
+            return false;
+        }
+
+        foundElectronics.setModelDetail(electronics.getModelDetail());
+        return true;
     }
 }

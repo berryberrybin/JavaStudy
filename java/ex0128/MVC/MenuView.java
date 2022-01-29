@@ -61,9 +61,7 @@ public class MenuView {
         System.out.print("모델설명은? ");
         String modelDetail = sc.nextLine();
 
-
         controller.insert(new Electronics(modelNo, modelName, modelPrice, modelDetail));
-
     }
 
     /**
@@ -73,8 +71,6 @@ public class MenuView {
         System.out.print("찾을 전자제품 모델번호은? ");
         int modelNo = Integer.parseInt(sc.nextLine());
         controller.searchByModelNo(modelNo);
-
-
     }
 
 

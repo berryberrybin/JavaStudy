@@ -9,7 +9,14 @@ public class EndView {
      * @param elecArr
      */
     public static void printAll(Electronics[] elecArr) {
-
+        System.out.println();
+        System.out.println("<   제품   List   >");
+        for (int i = 0; i < ElectronicsService.count; i++) {
+            System.out.print("제품번호: " + elecArr[i].getModelNo() + " | ");
+            System.out.print("이름: " + elecArr[i].getModelName() + " | ");
+            System.out.print("가격: " + elecArr[i].getModelPrice() + " | ");
+            System.out.print("설명: " + elecArr[i].getModelDetail() + "\n");
+        }
     }
 
     /**
@@ -18,7 +25,15 @@ public class EndView {
      * @param electronics
      */
     public static void printSearchByModelNo(Electronics electronics) {
-
+        if (electronics == null) {
+            System.out.println(" >> 해당 상품을 찾을 수가 없습니다. ");
+        } else {
+            System.out.println();
+            System.out.println("<   제품번호 " + electronics.getModelNo() + " 해당 정보   >");
+            System.out.print("이름: " + electronics.getModelName() + " | ");
+            System.out.print("가격: " + electronics.getModelPrice() + " | ");
+            System.out.print("설명: " + electronics.getModelDetail() + "\n");
+        }
     }
 
     /**
@@ -27,6 +42,6 @@ public class EndView {
      * @param message
      */
     public static void printMessage(String message) {
-
+        System.out.println(message);
     }
 }
