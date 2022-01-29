@@ -1,5 +1,6 @@
 package ex0128.MVC;
 
+
 //사용자 요청에 해당하는 결과를 모니터에 출력하는 클래스
 public class EndView {
 
@@ -43,5 +44,22 @@ public class EndView {
      */
     public static void printMessage(String message) {
         System.out.println(message);
+    }
+
+    public static void printBestElectronics(int[] rankArr, Electronics[] elecArr) {
+        System.out.println("총 조회수: " + ElectronicsService.getTotalViewCount());
+        System.out.println("------- 조회순 제품 List ----------");
+        for (int rank = 0; rank < rankArr.length; rank++) {
+            for (int i = 0; i < rankArr.length; i++) {
+                if (rankArr[i] == rank) {
+                    System.out.print("조회수> " + ElectronicsService.getViewCountArr(i) + " | ");
+                    System.out.print("제품번호: " + elecArr[i].getModelNo() + " | ");
+                    System.out.print("이름: " + elecArr[i].getModelName() + " | ");
+                    System.out.print("가격: " + elecArr[i].getModelPrice() + " | ");
+                    System.out.print("설명: " + elecArr[i].getModelDetail() + "\n");
+                }
+            }
+        }
+        System.out.println();
     }
 }

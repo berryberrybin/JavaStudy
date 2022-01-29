@@ -53,8 +53,6 @@ public class Electronics {
         return modelDetail;
     }
 
-    //    @Override
-    public int compareTo(Electronics o) {
-        return Integer.compare(modelNo, o.modelNo);
-    }
+
 }
+

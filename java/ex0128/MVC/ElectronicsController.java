@@ -56,4 +56,29 @@ public class ElectronicsController {
             EndView.printMessage(" >> 제품설명 수정을 실패하였습니다. ");
         }
     }
+
+    public void bestElectronics() {
+        EndView.printBestElectronics(service.bestViewCount(), service.elecArr);
+    }
+
+    /**
+     * 사용자가 요청하는 기준으로 전자제품 정렬하기
+     *
+     * @param menu
+     */
+    public void sortElectronics(int menu) {
+        if (menu == 1) {
+            service.sortByModelNo();
+            System.out.println(" >> 모델번호순으로 정렬되었습니다.");
+        } else if (menu == 2) {
+            service.sortByModelName();
+            System.out.println(" >> 모델이름순으로 정렬되었습니다.");
+        } else if (menu == 3) {
+            service.sortByModelPrice();
+            System.out.println(" >> 가격순으로 정렬되었습니다.");
+        } else {
+            EndView.printMessage(" >> 정렬메뉴를 잘못 선택하였습니다. ");
+        }
+        EndView.printAll(service.elecArr);
+    }
 }

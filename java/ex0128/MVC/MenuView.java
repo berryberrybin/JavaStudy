@@ -15,9 +15,9 @@ public class MenuView {
     public void printMenu() {
 
         while (true) {
-            System.out.println("-------------------------------------------------------------------");
-            System.out.println("1. 전체검색    2. 모델번호검색     3.등록     4. 수정     9. 종료");
-            System.out.println("-------------------------------------------------------------------");
+            System.out.println("----------------------------------------------------------------------------");
+            System.out.println("1.전체검색   2.모델번호검색   3.등록   4.수정   5.조회수Best제품   6.정렬하기    9. 종료");
+            System.out.println("----------------------------------------------------------------------------");
             System.out.print("메뉴선택 > ");
 
             String menu = sc.nextLine();
@@ -33,6 +33,12 @@ public class MenuView {
                     break;
                 case "4":
                     this.inputUpdate();
+                    break;
+                case "5":
+                    controller.bestElectronics();
+                    break;
+                case "6":
+                    this.inputSort();
                     break;
                 case "9":
                     System.exit(0);
@@ -86,6 +92,16 @@ public class MenuView {
 
         controller.update(new Electronics(modelNo, modelDetail));
 
+    }
+
+    /**
+     * 전자제품 배열을 정렬시 원하는 기준을 키보드 입력받는 메소드
+     */
+    public void inputSort() {
+        System.out.println(" [ 1.모델번호순  2.이름순  3.가격순 ] ");
+        System.out.print("원하는 정렬 기준은? ");
+        int menuNo = Integer.parseInt(sc.nextLine());
+        controller.sortElectronics(menuNo);
     }
 
 }
