@@ -58,7 +58,7 @@ public class ElectronicsController {
     }
 
     public void bestElectronics() {
-        EndView.printBestElectronics(service.bestViewCount(), service.elecArr);
+        EndView.printBestElectronics(service.getRankArrayOrderByViewCount(), service.elecArr);
     }
 
     /**

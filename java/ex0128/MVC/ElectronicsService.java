@@ -149,10 +149,9 @@ public class ElectronicsService {
     }
 
     /**
-     * 전자제품 정렬 - 모델가격순
+     * 전자제품 랭킹 - 조회순
      */
-    public int[] bestViewCount() {
-
+    public int[] getRankArrayOrderByViewCount() {
         int[] rankArray = new int[count];
         for (int i = 0; i < count; i++) {
             int rankCount = 0;
