@@ -1,5 +1,8 @@
 package ex0128.MVC;
 
+import java.util.Comparator;
+
+
 public class ElectronicsService {
     public static int count; // 배열방에 저장된 전자제품의 개수를 체크
 
@@ -84,53 +87,47 @@ public class ElectronicsService {
         return true;
     }
 
-    /**
-     * 전자제품 정렬 - 모델번호순
-     */
-    public void sortByModelNo() {
-        int n = ElectronicsService.count;
-        for (int i = n - 1; i > 0; i--) {
-            for (int j = 0; j < i; j++) {
-                if (elecArr[j].getModelNo() > elecArr[j + 1].getModelNo()) {
-                    Electronics temp = elecArr[j];
-                    elecArr[j] = elecArr[j + 1];
-                    elecArr[j + 1] = temp;
-
+    public void sortElectronics(int menu) {
+        Comparator<Electronics> comparator = null;
+        if (menu == 1) {
+            comparator = new Comparator<>() {
+                @Override
+                public int compare(Electronics o1, Electronics o2) {
+                    return Integer.compare(o1.getModelNo(), o2.getModelNo());
                 }
-            }
+            };
+            System.out.println(" >> 모델번호순으로 정렬되었습니다.");
+        } else if (menu == 2) {
+            comparator = new Comparator<>() {
+                @Override
+                public int compare(Electronics o1, Electronics o2) {
+                    return o1.getModelName().compareTo(o2.getModelName());
+                }
+            };
+            System.out.println(" >> 모델이름순으로 정렬되었습니다.");
+        } else if (menu == 3) {
+            comparator = new Comparator<>() {
+                @Override
+                public int compare(Electronics o1, Electronics o2) {
+                    return Integer.compare(o1.getModelPrice(), o2.getModelPrice());
+                }
+            };
+            System.out.println(" >> 가격순으로 정렬되었습니다.");
         }
+        sort(comparator);
     }
 
     /**
-     * 전자제품 정렬 - 모델이름순
+     * 전자제품 정렬 - comparator 기준에 따라
      */
-
-    public void sortByModelName() {
+    private void sort(Comparator<Electronics> comparator) {
         int n = ElectronicsService.count;
         for (int i = n - 1; i > 0; i--) {
             for (int j = 0; j < i; j++) {
-                if (elecArr[j].getModelName().compareTo(elecArr[j + 1].getModelName()) > 0) {
+                if (comparator.compare(elecArr[j], elecArr[j + 1]) > 0) {
                     Electronics temp = elecArr[j];
                     elecArr[j] = elecArr[j + 1];
                     elecArr[j + 1] = temp;
-
-                }
-            }
-        }
-    }
-
-    /**
-     * 전자제품 정렬 - 모델가격순
-     */
-    public void sortByModelPrice() {
-        int n = ElectronicsService.count;
-        for (int i = n - 1; i > 0; i--) {
-            for (int j = 0; j < i; j++) {
-                if (elecArr[j].getModelPrice() > elecArr[j + 1].getModelPrice()) {
-                    Electronics temp = elecArr[j];
-                    elecArr[j] = elecArr[j + 1];
-                    elecArr[j + 1] = temp;
-
                 }
             }
         }

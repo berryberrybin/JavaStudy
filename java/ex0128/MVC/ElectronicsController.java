@@ -67,18 +67,11 @@ public class ElectronicsController {
      * @param menu
      */
     public void sortElectronics(int menu) {
-        if (menu == 1) {
-            service.sortByModelNo();
-            System.out.println(" >> 모델번호순으로 정렬되었습니다.");
-        } else if (menu == 2) {
-            service.sortByModelName();
-            System.out.println(" >> 모델이름순으로 정렬되었습니다.");
-        } else if (menu == 3) {
-            service.sortByModelPrice();
-            System.out.println(" >> 가격순으로 정렬되었습니다.");
+        if (menu >= 1 && menu <= 3) {
+            service.sortElectronics(menu);
+            EndView.printAll(service.elecArr);
         } else {
             EndView.printMessage(" >> 정렬메뉴를 잘못 선택하였습니다. ");
         }
-        EndView.printAll(service.elecArr);
     }
 }
