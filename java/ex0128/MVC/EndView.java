@@ -47,12 +47,12 @@ public class EndView {
     }
 
     public static void printBestElectronics(int[] rankArr, Electronics[] elecArr) {
-        System.out.println("총 조회수: " + ElectronicsService.getTotalViewCount());
+        System.out.println("총 조회수: " + Electronics.getTotalViewCount());
         System.out.println("------- 조회순 제품 List ----------");
         for (int rank = 0; rank < rankArr.length; rank++) {
             for (int i = 0; i < rankArr.length; i++) {
                 if (rankArr[i] == rank) {
-                    System.out.print("조회수> " + ElectronicsService.getViewCountArr(i) + " | ");
+                    System.out.print("조회수> " + elecArr[i].getViewCount() + " | ");
                     System.out.print("제품번호: " + elecArr[i].getModelNo() + " | ");
                     System.out.print("이름: " + elecArr[i].getModelName() + " | ");
                     System.out.print("가격: " + elecArr[i].getModelPrice() + " | ");

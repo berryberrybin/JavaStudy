@@ -5,6 +5,8 @@ public class Electronics {
     private String modelName;
     private int modelPrice;
     private String modelDetail;
+    private int viewCount;
+    private static int totalViewCount;
 
     public Electronics() {
 
@@ -53,6 +55,17 @@ public class Electronics {
         return modelDetail;
     }
 
+    public void addViewCount() {
+        viewCount++;
+        totalViewCount++;
+    }
 
+    public int getViewCount() {
+        return viewCount;
+    }
+
+    public static int getTotalViewCount() {
+        return totalViewCount;
+    }
 }
 

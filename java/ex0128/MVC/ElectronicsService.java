@@ -2,16 +2,6 @@ package ex0128.MVC;
 
 public class ElectronicsService {
     public static int count; // 배열방에 저장된 전자제품의 개수를 체크
-    private static int totalViewCount;
-    private static int[] viewCountArr;
-
-    public static int getTotalViewCount() {
-        return totalViewCount;
-    }
-
-    public static int getViewCountArr(int i) {
-        return viewCountArr[i];
-    }
 
     private String[][] data = new String[][]{ // 최초의 초기 데이터 준비
             {"300", "선풍기", "10", "삼성 선풍기"},
@@ -27,7 +17,6 @@ public class ElectronicsService {
     //외부에서 객체 생성안됨 - 배열 elecArr 에 String타입이 아닌 객체형태로 저장
     private ElectronicsService() {
         elecArr = new Electronics[10];
-        viewCountArr = new int[10];
         for (int i = 0; i < data.length; i++) {
             insert(new Electronics(Integer.parseInt(data[i][0]), data[i][1], Integer.parseInt(data[i][2]), data[i][3]));
             //생성자 Electronics(int,String,int,String) 호출됨
@@ -71,8 +60,7 @@ public class ElectronicsService {
     public Electronics searchByModelNo(int modelNo) {
         for (int i = 0; i < ElectronicsService.count; i++) {
             if (elecArr[i].getModelNo() == modelNo) {
-                totalViewCount++;
-                viewCountArr[i]++;
+                elecArr[i].addViewCount();
                 return elecArr[i];
             }
         }
@@ -156,7 +144,7 @@ public class ElectronicsService {
         for (int i = 0; i < count; i++) {
             int rankCount = 0;
             for (int j = 0; j < count; j++) {
-                if (viewCountArr[i] < viewCountArr[j]) {
+                if (elecArr[i].getViewCount() < elecArr[j].getViewCount()) {
                     rankCount++;
                 }
             }
