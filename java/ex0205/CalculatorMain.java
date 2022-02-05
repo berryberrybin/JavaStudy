@@ -5,50 +5,72 @@ import java.util.List;
 import java.util.Scanner;
 
 public class CalculatorMain {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("마지막 숫자 : ");
-        int lastNumber = Integer.parseInt(scanner.nextLine());
+    public int calculate(int lastNumber, int threadNumber) {
+        List<SumThread> sumThreadList = makeThreadList(lastNumber, threadNumber);
+        executeThreadList(sumThreadList);
+        checkThreadEnd(sumThreadList, threadNumber);
+        return sumThreadResult(sumThreadList);
+    }
 
-        System.out.print("사용할 스레드 개수 : ");
-        int n = Integer.parseInt(scanner.nextLine());
-
+    private List<SumThread> makeThreadList(int lastNumber, int threadNumber) {
         List<SumThread> threadList = new ArrayList<>();
-
         int start = 1;
-        int range = (lastNumber / n);
+        int range = (lastNumber / threadNumber);
         int end = range;
-
-        for (int i = 0; i < n; i++) {
-            if (i == n - 1) {
+        for (int i = 0; i < threadNumber; i++) {
+            if (i == threadNumber - 1) {
                 end = lastNumber;
             }
             SumThread thread = new SumThread(start, end);
             threadList.add(thread);
-            thread.start();
             start = end + 1;
             end += range;
         }
+        return threadList;
+    }
 
-        int result = 0;
+    private void executeThreadList(List<SumThread> sumThreadList) {
+        for (int i = 0; i < sumThreadList.size(); i++) {
+            sumThreadList.get(i).start();
+        }
+    }
+
+    private void checkThreadEnd(List<SumThread> threadList, int threadNumber) {
+        int count = 0;
         boolean run = true;
         while (run) {
-            int count = 0;
-            result = 0;
             for (int i = 0; i < threadList.size(); i++) {
                 Thread.State state = threadList.get(i).getState();
-
-                result += threadList.get(i).getResult();
                 if (!state.equals(Thread.State.TERMINATED)) {
                     break;
                 } else {
                     count++;
                 }
             }
-            if (count == n) {
+            if (count == threadNumber) {
                 run = false;
             }
         }
-        System.out.println("최종값 : " + result);
+    }
+
+    private int sumThreadResult(List<SumThread> threadList) {
+        int result = 0;
+        for (int i = 0; i < threadList.size(); i++) {
+            result += threadList.get(i).getResult();
+        }
+        return result;
+    }
+
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("마지막 숫자 : ");
+        int lastNumber = Integer.parseInt(scanner.nextLine());
+
+        System.out.print("사용할 스레드 개수 : ");
+        int threadNumber = Integer.parseInt(scanner.nextLine());
+
+        CalculatorMain calculatorMain = new CalculatorMain();
+        System.out.println("최종값 : " + calculatorMain.calculate(lastNumber, threadNumber));
     }
 }
