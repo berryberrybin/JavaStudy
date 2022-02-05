@@ -16,7 +16,7 @@ public class SumThread extends Thread {
             sum += i;
         }
         result = sum;
-        System.out.println("resultA : " + result);
+        System.out.println(start + " ~ " + end + " 스레드 결과 : " + result);
     }
 
     public int getResult() {
