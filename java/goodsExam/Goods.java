@@ -53,4 +53,26 @@ class Goods {
         return explain;
     }
 
+    /*
+    @Override
+    public String toString() {
+        return "Goods{" +
+                "code='" + code + '\'' +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", explain='" + explain + '\'' +
+                '}';
+    }
+
+     */
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(code + " | ");
+        sb.append(name + " ");
+        sb.append(price + " ");
+        sb.append(explain + " ");
+        return sb.toString();
+    }
 }

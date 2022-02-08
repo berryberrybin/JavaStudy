@@ -17,10 +17,7 @@ public class EndView {
     public static void printSelectAll(Goods[] goodsArr) {
         System.out.println("-------상품 LIST ( " + GoodsService.count + " )개 ----------");
         for (int i = 0; i < GoodsService.count; i++) {
-            System.out.print(goodsArr[i].getCode() + " ");
-            System.out.print(goodsArr[i].getName() + ", ");
-            System.out.print(goodsArr[i].getPrice() + "원, ");
-            System.out.print(goodsArr[i].getExplain() + "\n");
+            System.out.println(goodsArr[i].toString());
         }
         System.out.println();
         // 결과 출력
