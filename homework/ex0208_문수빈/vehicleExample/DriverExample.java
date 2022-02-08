@@ -1,4 +1,4 @@
-package ex0208_문수빈.VehicleExample;
+package ex0208_문수빈.vehicleExample;
 
 public class DriverExample {
     public static void main(String[] args) {

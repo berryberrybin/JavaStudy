@@ -1,4 +1,4 @@
-package ex0208_문수빈.TireExample;
+package ex0208_문수빈.tireExample;
 
 public class Car {
     Tire[] tires = {

@@ -1,4 +1,4 @@
-package ex0208_문수빈.TireExample;
+package ex0208_문수빈.tireExample;
 
 public class HankookTire extends Tire {
     public HankookTire(String location, int maxRotation) {
