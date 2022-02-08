@@ -11,7 +11,7 @@ public class ChildExample {
         parent.method3(); // 불가능
         parent.field2 = "data2"; // 불가능
          */
-        
+
         // Parent parent = new Child()을 통해 자식타입이 부모타입으로 자동변환된 후,
         // 다시 자식 타입으로 변환할때 강제타입변환 사용 가능
         Child child = (Child) parent;
