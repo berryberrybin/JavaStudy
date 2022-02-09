@@ -22,6 +22,9 @@ public class BoardMainApp {
         boardInterface.update(new Board(10, "Park", "제목변경", "내용수정"));
 
         boardInterface.selectByNo(5);
+
+        boardInterface.delete(10);
+        BoardInterface.selectAll(); // static 메소드 호출(구현객체가 필요 없다)
         System.out.println("-----------End------------");
     }
 }

@@ -19,4 +19,12 @@ public class FreeBoardImpl implements BoardInterface {
         System.out.println("FreeBoarImpl의 selectByNo call");
         return null;
     }
+
+    @Override
+    public int delete(int no) {
+        System.out.println(" FreeBoaordImpl의 delet입니다~ ");
+        return 2;
+    }
+
+
 }

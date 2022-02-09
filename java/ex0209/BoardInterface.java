@@ -9,4 +9,14 @@ public interface BoardInterface {
 
     //글번호로 검색하기
     Board selectByNo(int no);
+
+    default int delete(int no) {
+        System.out.println("공통의 삭제 기능입니다.");
+        return 1;
+    }
+
+    static Board[] selectAll() {
+        System.out.println("공통의 전체 검색 기능입니다~ ");
+        return null;
+    }
 }
