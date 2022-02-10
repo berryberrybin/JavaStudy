@@ -1,7 +1,7 @@
 package ex0210;
 
 public class ThrowsExceptionExam {
-    public void aa(int i) {
+    public void aa(int i) throws ArithmeticException, NumberFormatException {
         System.out.println("aa메소드 호출");
         try {
             this.bb(i);
@@ -11,7 +11,7 @@ public class ThrowsExceptionExam {
         System.out.println("aa메소드 완료");
     }
 
-    public void bb(int i) throws ArithmeticException {
+    public void bb(int i) throws ArithmeticException, NumberFormatException {
         System.out.println("bb메소드 호출");
         try {
             int result = 100 / i;
@@ -27,7 +27,7 @@ public class ThrowsExceptionExam {
         //te.aa(2);
         try {
             te.aa(0);
-        } catch (ArithmeticException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         System.out.println("------메인 끝 ---------");
