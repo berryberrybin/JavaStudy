@@ -3,6 +3,10 @@ package ex0212.solution;
 public class Square implements Quadrangle {
     private int length;
 
+    public Square(int length) {
+        this.length = length;
+    }
+
     @Override
     public int getWidth() {
         return length;

@@ -5,13 +5,15 @@ public class Main {
     public void testRectangle(Rectangle rect) {
         rect.setWidth(10);
         rect.setHeight(5);
-        System.out.println(rect.getWidth() == 10);
-        System.out.println(rect.getHeight() == 5);
-        System.out.println(rect.getArea() == 50);
+        System.out.println(rect.getWidth());
+        System.out.println(rect.getHeight());
+        System.out.println(rect.getArea());
     }
 
     public static void main(String[] args) {
+
         new Main().testRectangle(new Rectangle());
+        System.out.println("---------");
         new Main().testRectangle(new Square()); // LSP 위반 -매개변수가 Rectangle이니까 하위클래스인 Square도 매개변수로 넣을 수 있다
 //        Rectangle rect = new Square();
 //        rect.setWidth(10);

@@ -1,39 +1,33 @@
 package ex0212.solution;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Main {
 
     public void testRectangle(Rectangle rect) {
         rect.setWidth(10);
         rect.setHeight(5);
-        System.out.println(rect.getWidth() == 10);
-        System.out.println(rect.getHeight() == 5);
-        System.out.println(rect.getArea() == 50);
+        System.out.println(rect.getWidth());
+        System.out.println(rect.getHeight());
+        System.out.println(rect.getArea());
     }
 
-    public void testSquare(Square square) {
-        square.setWidth(10); // width = height = 10
-        System.out.println(square.getWidth() == 10);
-        System.out.println(square.getHeight() == 10);
-        System.out.println(square.getArea() == 100);
-        square.setHeight(5); // width = height = 5
-        System.out.println(square.getWidth() == 5);
-        System.out.println(square.getHeight() == 5);
-        System.out.println(square.getArea() == 25);
-    }
+//    public void testSquare(Square square) {
+//        square.setWidth(10); // width = height = 10
+//        System.out.println(square.getWidth());
+//        System.out.println(square.getHeight());
+//        System.out.println(square.getArea());
+//    }
 
     public static void main(String[] args) {
-        new Main().testRectangle(new Rectangle());
-        new Main().testSquare(new Square());
+        new Main().testRectangle(new Rectangle(0, 0));
+        //new Main().testSquare(new Square(0));
 
-        List<Quadrangle> quadrangles = new ArrayList<>();
-        quadrangles.add(new Rectangle());
-        quadrangles.add(new Square());
-        quadrangles.add(new Rectangle());
-        for (Quadrangle quadrangle : quadrangles) {
-            System.out.println(quadrangle.getArea());
-        }
+        System.out.println("------------------------------");
+//        List<Quadrangle> quadrangles = new ArrayList<>();
+//        quadrangles.add(new Rectangle(10, 2));
+//        quadrangles.add(new Square(5));
+//        quadrangles.add(new Rectangle(5, 5));
+//        for (Quadrangle quadrangle : quadrangles) {
+//            System.out.println(quadrangle.getArea());
+//        }
     }
 }
