@@ -1,10 +1,14 @@
 package ex0210.mvc;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 전자제품에 관련된 기능을 담당할 클래스
  */
 
 class ElectronicsService {
+
     String[][] data = new String[][]{
             {"100", "선풍기", "35000", "삼성 선풍기"},
             {"200", "전자렌지", "55000", "잘 데워져요.."},
@@ -14,22 +18,15 @@ class ElectronicsService {
     }; // 최초의 초기치 데이터를 준비!! electronics에 저장
 
     private static ElectronicsService instance = new ElectronicsService(); // 16번째줄로감
-
-    public static int count; // 배열방에 저장된 전자제품의 개수를 체크!!
-
-    Electronics elecArr[]; // 공간생성
+    private List<Electronics> elecList = new ArrayList<>();
 
     /**
      * 외부에서 객체 생성안됨.
      */
     private ElectronicsService() {
         // 데이터 초기화(전자제품 초기치 데이터) 하자.
-        elecArr = new Electronics[7];
-
         for (int i = 0; i < data.length; i++) {
-            elecArr[i] = new Electronics(Integer.parseInt(data[i][0]), data[i][1], Integer.parseInt(data[i][2]), data[i][3]); // 데이터 초기화
-
-            ElectronicsService.count++;
+            elecList.add(new Electronics(Integer.parseInt(data[i][0]), data[i][1], Integer.parseInt(data[i][2]), data[i][3])); // 데이터 초기화
         }
 
     }
@@ -52,10 +49,7 @@ class ElectronicsService {
      * @return
      */
     public void insert(Electronics electronics) throws ElectronicsArrayBoundsException {
-        if (elecArr.length == ElectronicsService.count) {
-            throw new ElectronicsArrayBoundsException("배열의 길이를 벗어나 더이상 등록 할 수 없습니다.");
-        }
-        elecArr[ElectronicsService.count++] = electronics;
+        elecList.add(electronics);
     }
 
     /**
@@ -63,8 +57,8 @@ class ElectronicsService {
      *
      * @return
      */
-    public Electronics[] selectAll() {
-        return elecArr;
+    public List<Electronics> selectAll() {
+        return elecList;
     }
 
     /**
@@ -74,9 +68,9 @@ class ElectronicsService {
      * @return
      */
     public Electronics searchByModelNo(int modelNo) throws SearchNotFoundException {
-        for (int i = 0; i < ElectronicsService.count; i++) {
-            if (elecArr[i].getModelNo() == modelNo) {
-                return elecArr[i];
+        for (Electronics electronics : elecList) {
+            if (electronics.getModelNo() == modelNo) {
+                return electronics;
             }
         }
         // 여기까지지 오면 찾는값이 없음

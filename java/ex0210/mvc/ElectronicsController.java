@@ -1,6 +1,8 @@
 package ex0210.mvc;
 
 
+import java.util.List;
+
 /**
  * View와 Model 사이에서 중간 역할
  * : 사용자의 요청을 받아서 그에 해당하는 서비스를 호출하고
@@ -14,7 +16,7 @@ class ElectronicsController {
      * 전체검색
      */
     public void selectAll() {
-        Electronics[] elecArr = service.selectAll();
+        List<Electronics> elecArr = service.selectAll();
 
         EndView.printAll(elecArr);
     }
