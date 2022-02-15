@@ -50,6 +50,7 @@ public class MapStudentController {
     public static void delete(String id) {
         try {
             service.delete(id);
+            System.out.println(id + "제품을 삭제 했습니다.");
         } catch (RuntimeException e) {
             EndView.printMessage(e.getMessage());
         }

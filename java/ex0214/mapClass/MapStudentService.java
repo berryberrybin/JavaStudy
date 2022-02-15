@@ -56,11 +56,15 @@ public class MapStudentService {
      * -  Person인경우는 이름만 출력 Student인경우는 이름과 총점 출력  -> EndView에서
      * - 없는경우는 "id는 없습니다." 예외발생
      */
-    public Person searchByKey(String key) {
-        if (!map.containsKey(key)) {
-            throw new RuntimeException("id는 없습니다.");
-        }
-        return map.get(key);
+    public Person searchByKey(String key) { //key는 id
+        Person person = map.get(key);
+        if (person == null)
+            throw new RuntimeException(key + "에 해당하는 정보는 없습니다.");
+        return person;
+//        if (!map.containsKey(key)) {
+//            throw new RuntimeException("id는 없습니다.");
+//        }
+//        return map.get(key);
     }
 
     /**
@@ -70,7 +74,7 @@ public class MapStudentService {
      */
     public void insert(Person person) { // student or person이 상황에 따라 들어 올 수 있다.
         if (map.containsKey(person.getId())) {
-            throw new RuntimeException("등록되지 않았습니다.");
+            throw new RuntimeException(person.getId() + "중복된 아이디이므로 등록되지 않았습니다.");
         } else {
             map.put(person.getId(), person);
         }
@@ -81,11 +85,15 @@ public class MapStudentService {
      * (삭제되지 않았습니다.)
      */
     public void delete(String key) {
-        if (!map.containsKey(key)) {
-            throw new RuntimeException("삭제되지 않았습니다.");
-        } else {
-            map.remove(key);
+        Person person = map.remove(key);
+        if (person == null) {
+            throw new RuntimeException(key + " 에 해당하는 정보를 삭제할 수 없습니다.");
         }
+//        if (!map.containsKey(key)) {
+//            throw new RuntimeException("삭제되지 않았습니다.");
+//        } else {
+//            map.remove(key);
+//        }
     }
 
     /**
@@ -95,23 +103,28 @@ public class MapStudentService {
      * 수정이 안된다면 예외발생
      */
     public void update(Person person) {
-        if (!map.containsKey(person.getId())) {
-            throw new RuntimeException("수정이 안됨");
+        Person searchPerson = map.get(person.getId());
+        if (searchPerson == null) {
+            throw new RuntimeException(person.getId() + "는 잘못되어 수정할 수 없습니다.");
         }
+//        if (!map.containsKey(person.getId())) {
+//            throw new RuntimeException("수정이 안됨");
+//        }
 
         if (person instanceof Student) {
-            Student student = (Student) person;
-            Student element = (Student) map.get(person.getId());
-            element.setName(student.getName());
-            element.setKor(student.getKor());
-            element.setEng(student.getEng());
-            element.setMath(student.getMath());
+            if (searchPerson instanceof Student) {
+                Student searchStudent = (Student) person;
+                Student elementStudent = (Student) map.get(person.getId());
+                elementStudent.setName(searchStudent.getName());
+                elementStudent.setKor(searchStudent.getKor());
+                elementStudent.setEng(searchStudent.getEng());
+                elementStudent.setMath(searchStudent.getMath());
 
-
+            } else {
+                throw new RuntimeException("타입 오류로 수정에 실패했습니다.");
+            }
         } else {
-            map.get(person.getId()).setName(person.getName());
-
+            searchPerson.setName(person.getName());
         }
-
     }
 }

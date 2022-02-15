@@ -6,17 +6,19 @@ public class StartView {
         //MVC구조형태 : startView -> controller -> service
         //1. 전체검색
         MapStudentController.selectAll();
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+        System.out.println();
 
-
-        System.out.println("2.검색하기(Person인경우) ******************");
+        System.out.println("** 2.검색하기(Person인경우) ");
         MapStudentController.searchById("A01"); //결과 : 이름
 
-        System.out.println("2.검색하기(Student인경우) ******************");
+        System.out.println("** 2.검색하기(Student인경우) ******************");
         MapStudentController.searchById("S02"); //결과 : 이름, 총점
 
-        System.out.println("2.검색하기(없는경우) ******************");
+        System.out.println("** 2.검색하기(없는경우) ******************");
         MapStudentController.searchById("test"); //결과 : 예외메시지
 
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         System.out.println();
 
         System.out.println("3.등록하기(Person) ******************");
