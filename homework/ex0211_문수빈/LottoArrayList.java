@@ -42,7 +42,8 @@ public class LottoArrayList {
                 return 0;
             }
         };
-        lottoList.sort(comparator);
+        lottoList.sort(comparator); // lottoList.sort(null);
+        lottoList.sort(Collections.reverseOrder());//내림차순
         System.out.println(lottoList);
          */
     }
