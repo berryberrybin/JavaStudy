@@ -1,5 +1,7 @@
 package ex0215gui.eventExam;
 
+//import javax.swing.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -18,8 +20,10 @@ public class JFramEventExam extends JFrame implements ActionListener {
         Container con = super.getContentPane();
 
         con.setBackground(Color.pink); // 백그라운드 색상 변경
-        btn1.setBackground(Color.BLUE);
-
+        btn1.setBackground(Color.CYAN);
+        // 맥은 2가지 추가해야지 버튼 색상이 변경됨
+        btn1.setOpaque(true);
+        btn1.setBorderPainted(false);
         //JFrame의 레이아웃을 변경해보자
         //super.setLayout(new FlowLayout(FlowLayout.RIGHT,0,50)); // 버튼을 왼쪽정렬, 간격은 50
         super.setLayout(new FlowLayout());
