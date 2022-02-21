@@ -11,7 +11,7 @@ public class FileExample {
             dir.mkdirs();
         } // 새로운 디렉토리 생성
 
-        File file1 = new File("C:/Temp/file.txt")
+        File file1 = new File("C:/Temp/file.txt");
         if (file1.exists() == false) {
             file1.createNewFile();
         } // 새로운 파일 생성
