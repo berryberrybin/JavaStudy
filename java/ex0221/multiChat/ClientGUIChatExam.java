@@ -53,6 +53,10 @@ public class ClientGUIChatExam extends JFrame {
                 while ((data = br.readLine()) != null) {
                     // textArea.setText(data); - setText()는 덮어쓰기기능
                     textArea.append(data + "\n"); // - append()는 추가기능
+
+                    //스크롤이 입력한 글자만큼 내려오기
+                    textArea.setCaretPosition(textArea.getText().length());
+
                 }
             } catch (Exception e) {
                 e.printStackTrace();
