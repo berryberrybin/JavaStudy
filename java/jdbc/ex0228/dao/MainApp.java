@@ -8,6 +8,9 @@ public class MainApp {
 
         System.out.println("--2. 사원등록 검색  --");
         //dao.insert(new Emp(8999, "jung", "teacher", 800));
-        dao.preparedInsert(new Emp(8700, "ABBB", "doctor", 100));
+        //dao.preparedInsert(new Emp(8700, "ABBB", "doctor", 100));
+
+        System.out.println("--3. 전체 검색하기--");
+        dao.preparedSelectAll();
     }
 }

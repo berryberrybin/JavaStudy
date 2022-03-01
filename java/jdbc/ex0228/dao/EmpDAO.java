@@ -76,4 +76,41 @@ public class EmpDAO {
         }
     }
 
+    //전체사원 검색
+    //select empno, ename, job, sal , hiredate, from emp
+    public void preparedSelectAll() {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = "select empno, ename, job, sal, hiredate from emp";
+        try {
+            con = DbUtil.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            //컬럼의 정보
+            ResultSetMetaData rmd = rs.getMetaData();
+            for (int i = 1; i <= rmd.getColumnCount(); i++) {
+                String columnName = rmd.getColumnName(i);
+                System.out.print(columnName + "\t\t");
+            }
+            System.out.println("\n---------------------------------------");
+            while (rs.next()) {
+                int empno = rs.getInt(1);
+                String ename = rs.getString(2);
+                String job = rs.getString("job");
+                int sal = rs.getInt("SAL");
+                String hiredate = rs.getString(5);
+
+                Emp emp = new Emp(empno, ename, job, sal, hiredate);
+                System.out.println(emp);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DbUtil.dbClose(con, ps, rs);
+        }
+
+    }
+
 }
