@@ -22,4 +22,10 @@ public interface BoardService {
 
     //게시물 삭제
     public void boardDelete(int boardNo) throws SQLException;
+
+    //댓글 등록
+    void replyInsert(ReplyDTO replyDTO) throws SQLException;
+
+    BoardDTO replySelectByParentNo(int boardNo) throws SQLException;
+
 }

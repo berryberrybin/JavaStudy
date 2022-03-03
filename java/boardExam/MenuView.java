@@ -18,7 +18,10 @@ public class MenuView {
             System.out.print("4. 등록 ");
             System.out.print("5. 수정 ");
             System.out.print("6. 삭제 ");
-            System.out.print("7. 종료 ]");
+            System.out.print("7. 댓글등록 ");
+            System.out.print("8. 부모글의 댓글 정보 검색 ");
+
+            System.out.print("9. 종료 ]");
 
             System.out.println("\n--------------------------------------------");
             System.out.println("선택메뉴는?");
@@ -44,6 +47,12 @@ public class MenuView {
                         inputDeleteBoard();
                         break;
                     case 7:
+                        inputInsertReply();
+                        break;
+                    case 8:
+                        inputSelectReplyByParentNo();
+                        break;
+                    case 9:
                         System.out.println("다음에 다시 만나요~~^^ 로그아웃됩니다...");
                         System.exit(0);
                         break;
@@ -126,5 +135,28 @@ public class MenuView {
         System.out.println("삭제 게시물 번호는?");
         int no = Integer.parseInt(sc.nextLine());
         BoardController.boardDelete(no);
+    }
+
+    // 부모글에 해당하는 댓글 정보검색하기
+    public static void inputSelectReplyByParentNo() {
+        System.out.println("검색하려는 댓글의 부모 글번호 ? ");
+        int boardNo = Integer.parseInt(sc.nextLine());
+
+        BoardController.replySelectByParentNo(boardNo);
+
+        // 부모글의 글번호를 키보드로 입력받는다.
+
+    }
+
+    //댓글 등록
+    public static void inputInsertReply() {
+        // 키보드 입력으로 댓글 내용, 등록하려는 부모글 번호 입력받는다.
+        System.out.println("댓글을 등록하려는 부모글 번호는 ? ");
+        int boardNo = Integer.parseInt(sc.nextLine());
+
+        System.out.println("댓글 내용은 ? ");
+        String replyContent = sc.nextLine();
+
+        BoardController.replyInsert(new ReplyDTO(replyContent, boardNo));
     }
 }

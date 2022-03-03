@@ -1,11 +1,18 @@
 package boardExam;
 
+import java.util.List;
+
 public class BoardDTO {
     private int boardNo; // 글번호
     private String subject; // 제목
     private String writer; // 작성자
     private String content; // 내용
     private String boardDate; // 등록일
+
+    // 1:다인 경우
+    // BoardDTO 1개에 여러개의 댓글을 달 수 있음
+    List<ReplyDTO> repliesList; // 부모글 1개에 여러개의 댓글이 등록될 수 있음
+
 
     public BoardDTO() {
     }
@@ -69,6 +76,14 @@ public class BoardDTO {
 
     public void setBoardDate(String boardDate) {
         this.boardDate = boardDate;
+    }
+
+    public List<ReplyDTO> getRepliesList() {
+        return repliesList;
+    }
+
+    public void setRepliesList(List<ReplyDTO> repliesList) {
+        this.repliesList = repliesList;
     }
 
     @Override

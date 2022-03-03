@@ -57,4 +57,25 @@ public class BoardController {
             FailView.errorMessage(e.getMessage());
         }
     }
+
+    public static void replyInsert(ReplyDTO replyDTO) {
+        try {
+            boardService.replyInsert(replyDTO);
+            SuccessView.messagePrint(replyDTO.getBoardNo() + " 글에 댓글이 등록되었습니다. ");
+        } catch (SQLException e) {
+            //e.printStackTrace;
+            FailView.errorMessage(e.getMessage());
+        }
+    }
+
+    public static void replySelectByParentNo(int boardNo) {
+        try {
+            BoardDTO boardDTO = boardService.replySelectByParentNo(boardNo);
+            SuccessView.selectReplyPrint(boardDTO);
+
+        } catch (SQLException e) {
+            // e.printStackTrace();
+            FailView.errorMessage(e.getMessage());
+        }
+    }
 }
